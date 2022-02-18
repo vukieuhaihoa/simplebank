@@ -24,21 +24,21 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Set up Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: 1.17
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
 
-    - name: Install migrate-golang
-      run: |
-      curl -L https://github.com/golang-migrate/migrate/releases/download/v4.15.1/migrate.linux-amd64.tar.gz | tar xvz
-      sudo mv migrate.linux-amd64 /usr/bin/migrate
-      which migrate
-    
-    - name: Run migrate up
-      run: make migrateup
+      - name: Install migrate-golang
+        run: |
+          curl -L https://github.com/golang-migrate/migrate/releases/download/v4.15.1/migrate.linux-amd64.tar.gz | tar xvz
+          sudo mv migrate.linux-amd64 /usr/bin/migrate
+          which migrate
 
-    - name: Test
-      run: make test
+      - name: Run migrate up
+        run: make migrateup
+
+      - name: Test
+        run: make test
