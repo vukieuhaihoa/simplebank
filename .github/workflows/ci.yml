@@ -7,8 +7,20 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  test:
+    name: Test
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12
+        env:
+          - './database.env'
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - uses: actions/checkout@v2
 
@@ -16,6 +28,16 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: 1.17
+
+      -name: Install migrate
+        run: |
+        curl -L https://github.com/golang-migrate/migrate/releases/download/v4.15.1/migrate.linux-amd64.tar.gz | tar xvz
+        mv migrate.linux-amd64 /usr/bin/migrate
+        which migrate
+      
+      -name: Run migrate up
+        run: make migrateup
+
 
       - name: Test
         run: make test
