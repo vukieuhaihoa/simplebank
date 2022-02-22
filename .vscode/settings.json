@@ -1,3 +1,13 @@
 {
-  "cSpell.words": ["DBTX", "gonic", "khong", "oneof", "sqlc", "sslmode"]
+  "cSpell.words": [
+    "DBTX",
+    "gomock",
+    "gonic",
+    "khong",
+    "mockdb",
+    "oneof",
+    "sqlc",
+    "sslmode",
+    "struct"
+  ]
 }
