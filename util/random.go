@@ -1,6 +1,7 @@
 package util
 
 import (
+	"fmt"
 	"math/rand"
 	"strings"
 	"time"
@@ -40,7 +41,12 @@ func RandomMoney() int64 {
 
 // generate random currency
 func RandomCurrency() string {
-	currencies := []string{USD, EUR, CAD	}
+	currencies := []string{USD, EUR, CAD}
 	k := len(currencies)
 	return currencies[rand.Intn(k)]
+}
+
+// generate random email
+func RandomEmail() string {
+	return fmt.Sprintf("%s@gmail.com", RandomOwner(6))
 }

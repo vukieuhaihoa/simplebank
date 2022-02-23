@@ -69,7 +69,7 @@ func TestGetAccoutAPI(t *testing.T) {
 			tc.buildStubs(store)
 
 			// start server and send request
-			server := NewServer(store)
+			server := newTestServer(t, store)
 			recorder := httptest.NewRecorder()
 
 			url := fmt.Sprintf("/accounts/%d", account.ID)
@@ -100,4 +100,9 @@ func requireBodyMathAccount(t *testing.T, body *bytes.Buffer, account db.Account
 	require.NoError(t, err)
 	require.Equal(t, account, gotAccount)
 
+}
+
+
+func TestCreateAccountAPI(t *testing.T) {
+	
 }

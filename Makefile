@@ -1,6 +1,7 @@
 postgres:
 	docker run --name postgres -p 5432:5432 -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -d postgres:12-alpine
-
+restartpq:
+	docker restart postgres
 createdb:
 	docker exec -it postgres createdb --username=admin --owner=admin simple_bank
 dropdb:
@@ -21,4 +22,4 @@ server:
 	go run main.go
 mock:
 	mockgen -package mockdb -destination db/mock/store.go  github.com/vukieuhaihoa/simplebank/db/sqlc Store
-.PHONY: postgres, createdb, dropdb, migrateup, migratedown, sqlc, test, server, mock, migrateup1, migratedown1
+.PHONY: postgres, restartpq, createdb, dropdb, migrateup, migratedown, sqlc, test, server, mock, migrateup1, migratedown1
