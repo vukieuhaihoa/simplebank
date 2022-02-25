@@ -75,7 +75,6 @@ func (server *Server) createUser(ctx *gin.Context) {
 	rsq := newUserResponse(user)
 
 	ctx.JSON(http.StatusOK, rsq)
-	return
 }
 
 type loginUserRequest struct {
@@ -126,7 +125,6 @@ func (server *Server) login(ctx *gin.Context) {
 		AccessToken: accessToken,
 		User:        newUserResponse(user),
 	}
- 
+
 	ctx.JSON(http.StatusOK, rsp)
-	return
 }
