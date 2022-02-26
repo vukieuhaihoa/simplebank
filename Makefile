@@ -1,5 +1,5 @@
 postgres:
-	docker run --name postgres --network bank-network -p 5432:5432 -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -d postgres:12-alpine
+	docker run --name postgres --network bank-network -p 5432:5432 -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -d postgres:14.1-alpine
 restartpq:
 	docker restart postgres
 createdb:
